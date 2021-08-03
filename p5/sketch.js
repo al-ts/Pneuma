@@ -14,7 +14,7 @@ canvas.position(x,y);
 
 function draw() {
  textSize(62);
-text(En construcción, 10, 30);
+text('En construcción', 10, 30);
 fill(255, 153);
  textSize(32);
 text('En construcción', 10, 60);
