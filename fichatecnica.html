@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html  lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pneuma</title>
+<!---HOJA DE ESTILO-->
+<link href="pneuma.css" rel="stylesheet" type="text/css"/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&family=Special+Elite&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@1,100&display=swap" rel="stylesheet">
+
+</head>
+
+
+<body>
+  <div class="contenedorhome">
+      <a href="pneumahome.html"><h3>[Pneuma]</h3></a>
+
+<header>
+
+  <nav class="menu">
+    <ul>
+      <li><a href="video.html">Video</a></li>
+      <li><a href="fichatecnica.html">Ficha técnica</a></li>
+      <li><a href="marcoteorico.html">Marco teorico</a></li>
+      <li><a href="p5/pneumaapp.html">Generador</a></li>
+    </ul>
+  </nav>
+</header>
+
+<div class="cuerpo">
+
+<p>Es un sitio web desarrollado con HTML5, CSS y JavaScript que cuenta con un programa desarrollado con Processing (Prototipo) y p5js que genera una pieza audiovisual interactiva, en la cual el usuario puede intervenir algunos aspectos de la pieza y sacar impresiones o capturas de pantalla a modo de postal que puede ser enviada o descargada por el visitante.
+<br/><br/>Las primeras pruebas del programa las desarrolle en Processing y consiste en un reproductor de audio y video con reactividad e interacción de mouse y teclado.
+<br/>Las imágenes que contiene la pieza audiovisual son ampliaciones de diferentes sectores de una prenda de vestir tomadas con un microscopio y se cargan de manera consecutiva (una sobre otra) para generar la fusión entre ellas.
+<br/><br/>A partir del análisis del espectro de una pieza sonora utilizando las librerías de sonido y análisis de Processing, se modifican los modos de fusión entre las imágenes que se cargan en el programa, dichos modos de fusión se van aplicando a las imágenes de manera aleatoria siguiendo el beat de la pieza sonora.
+ <br/><br/>Utilizando el clic de su mouse mediante una función mousePressed el visitante puede hacer aparecer textos de manera aleatoria, los textos son frases cortas, con diferentes tamaños que también se van alternando de manera aleatoria (Mas grandes o mas pequeños), adicional con el uso del mouse también se genera un sistema de partículas que se va reproduciendo en el punto donde se posa el mouse y se mueve siguiéndolo, también. Cuenta con un modo de fusión que permite que el color de las partículas se mezcle con el color que van tomando las imágenes.
+<br/>Por último mediante un evento de teclado Key Pressed el visitante presionando una tecla puede generar  capturas de pantalla que el sito almacena y se pueden enviar como postales.
+
+</p>
+
+</div>
+
+<div id="myNav" class="codigo">
+
+
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+
+  <div class="codigo-contenido">
+
+    Código:
+//TIMER
+
+float timer= 0; <br/>
+float delay = 1000/0.5f; // 60 fps<br/><br/>
+
+PFont myFont;<br/><br/>
+
+//Sonido<br/>
+import ddf.minim.analysis.*;<br/><br/><br/>
+import ddf.minim.*;<br/><br/>
+
+Minim       minim;<br/>
+AudioPlayer A6_B0;<br/>
+BeatDetect beat;<br/><br/>
+
+int num = 50;<br/><br/>
+
+int[] x = new int[num];<br/>
+int[] y = new int[num];<br/>
+//----------------------------------------------<br/>
+//imagen<br/>
+PImage fondo1,imag1,imag2,imag3,bt1,btPlay,btStop;<br/>
+int seccion = 0;<br/>
+int[] modeArray = {DIFFERENCE,ADD,SCREEN,DARKEST};<br/>
+int index;<br/>
+
+//textos<br/>
+String []  textos = {"We are spirit bound to this flesh","We are will and wonder",<br/>
+"Nacemos de un aliento de una palabra","Todos somos una chispa que nace del sol","recuerdos","Somos espíritu ligado a esta carne"};<br/>
+String  textHolder= ".";<br/><br/>
+
+void setup(){<br/><br/>
+
+   size(600,600);<br/>
+   background(#f15a24);<br/>
+   minim = new Minim(this);<br/>
+   //Cargo el archivo de audio<br/>
+   A6_B0 = minim.loadFile("Al.wav", 1024);<br/>
+   beat = new BeatDetect();<br/>
+   myFont = createFont("SpecialElite-Regular.ttf", 40);<br/>
+   textFont(myFont);<br/>
+   println(textos.length);<br/>
+   noStroke();<br/>
+   smooth();<br/>
+   fill(255, 102);<br/><br/>
+
+}<br/><br/>
+
+void draw(){<br/><br/>
+
+  if(seccion==0){<br/><br/>
+
+     bt1 = loadImage("S.png");<br/>
+     imageMode(CENTER);<br/>
+     image(bt1,width/2,height/2);<br/>
+     fill(255);<br/>
+     text("[Pneuma]", width/2, height/2);<br/><br/>
+
+  if (mouseX > 200 && mouseX < 400 && mouseY > 110 && mouseY < 400) {<br/>
+    cursor(HAND);<br/>
+  } else {<br/>
+    cursor(ARROW);<br/>
+  }<br/>
+    A6_B0.pause();<br/>
+}<br/><br/>
+
+ if(seccion==1){<br/><br/>
+
+     background(0);<br/>
+     beat.detect(A6_B0.mix);<br/><br/>
+
+
+      fondo1 = loadImage("T20210623_007_0001.jpg");<br/>
+      imag1 = loadImage("T20210623_006_0001.jpg");<br/>
+      imag2 = loadImage("T20210623_005_0001.jpg");<br/>
+      btPlay = loadImage("BtPlay.png");<br/>
+      btStop = loadImage("BtStop.png");<br/><br/>
+
+    if ( beat.isOnset() )  index = int(random(4));<br/><br/>
+
+
+       imageMode(CENTER);<br/>
+       blendMode(ADD);<br/>
+       image(btPlay,30,30);<br/>
+       image(btStop,50,30);<br/>
+       image(fondo1,width/2,height/2);<br/>
+       blendMode(modeArray[index]);<br/>
+       image(imag1,width/2,height/2);<br/>
+       image(imag2,width/2,height/2);<br/><br/>
+
+      x[0] = mouseX;<br/>
+      y[0] = mouseY;<br/><br/>
+
+    for (int i = num-1; i > 0; i--)<br/>
+    {<br/>
+      x[i] = x[i-1];<br/>
+      y[i] = y[i-1];<br/>
+    }<br/><br/>
+
+    for (int i = 0; i < num; i++)<br/>
+    {<br/>
+      ellipse(x[i], y[i], i, i);<br/>
+    }<br/><br/>
+
+ }<br/>
+
+ if(seccion==1){<br/><br/>
+
+
+    rectMode(CENTER);<br/>
+    rect(width/2,height/2,640,480);<br/>
+    fill(#f15a24);<br/>
+    noStroke();<br/><br/>
+
+     if (mouseX >20 && mouseX < 60 && mouseY > 20 && mouseY < 60) {<br/>
+    cursor(HAND);<br/>
+  } else {<br/>
+    cursor(ARROW);<br/>
+  }<br/><br/>
+
+    }<br/>
+    if(mousePressed){<br/>
+      seccion1();<br/>
+    }<br/><br/>
+
+ /////// TEXTO RAND<br/><br/>
+
+    if(seccion==1 && mousePressed){<br/><br/>
+
+     blendMode(DIFFERENCE);<br/>
+      text(textHolder,mouseX,mouseY);<br/><br/>
+
+             if(mousePressed && millis() > timer){<br/>
+               blendMode(DIFFERENCE);<br/>
+               textSize(random(30,120));<br/>
+               textHolder= textos[int(random(textos.length))];<br/>
+               timer+=delay;<br/><br/>
+        }<br/>
+      }<br/><br/>
+
+  //////////-------<br/><br/>
+
+    if ( keyPressed && key == 'p' ){saveFrame();}<br/>
+}<br/><br/>
+
+/**SECCION 1 ***/<br/><br/>
+
+void seccion1(){<br/><br/>
+
+ if(mouseX > 200 && mouseX < 400 && mouseY > 110 && mouseY < 400){<br/><br/>
+
+     seccion=1;<br/>
+     println(seccion);<br/>
+  }<br/><br/>
+
+    if(mouseX >20 && mouseX < 40 && mouseY > 20 && mouseY < 60)<br/>
+    {<br/>
+      A6_B0.play();<br/><br/>
+
+
+    }<br/><br/>
+
+    if(mouseX >41 && mouseX < 60 && mouseY > 20 && mouseY < 60)<br/>
+    {<br/>
+      A6_B0.pause();<br/>
+
+    }<br/>
+
+}<br/><br/>
+
+
+void keyPressed(){<br/>
+  if ( key == 'p' )saveFrame();<br/>
+}<br/><br/>
+
+/******fin*******/<br/><br/>
+  </div>
+
+</div>
+
+
+<span onclick="openNav()">Código</span>
+
+</div>
+
+
+<script>
+
+function openNav() {
+  document.getElementById("myNav").style.width = "100%";
+}
+
+
+function closeNav() {
+  document.getElementById("myNav").style.width = "0%";
+}
+</script>
+</body>
+</html>
