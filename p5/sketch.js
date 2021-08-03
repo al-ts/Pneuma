@@ -13,12 +13,15 @@ canvas.position(x,y);
 }
 
 function draw() {
- textSize(width / 3);
-  textAlign(CENTER, CENTER);
- let time = millis();
-  rotateX(time / 1000);
-  rotateZ(time / 1234);
-  text('En construcción', 0, 0);
+ textSize(62);
+text(En construcción, 10, 30);
+fill(255, 153);
+ textSize(32);
+text('En construcción', 10, 60);
+fill(255, 51);
+ textSize(32);
+text('En construcción', 10, 90);
+  
 }
 
 
