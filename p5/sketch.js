@@ -12,7 +12,7 @@ var y = 100;
 function setup(){
 canvas = createCanvas(640,480);
 canvas.position(x,y);
-textFont(SpecialElite-Regular);
+textFont(inconsolata);
   textSize(width / 3);
   textAlign(CENTER, CENTER);
 
