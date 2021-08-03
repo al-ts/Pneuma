@@ -150,22 +150,6 @@ header{
 
 }
 
-
-
-.epigrafe{
-  max-width: 800px;
-  width:100%;
-  margin-left: 200px;
-  margin-bottom: 100px;
-  text-align: right;
-  font-family:'Roboto', sans-serif;
-  font-style: italic;
-  color: #ffffff;
-  font-size: 15px;
-  opacity:1;
-
-}
-
 .in{
   max-width: 800px;
   position: relative;
@@ -262,6 +246,24 @@ div.contenedorhome span{
 }
 div.contenedorhome span:hover{
   cursor: pointer;
+}
+
+/*---------MARCO TEORICO-------*/
+
+.epigrafe{
+  position: relative;
+  max-width: 800px;
+  width:100%;
+  left: 20%;
+  top: 25%;
+  padding-bottom: 15%;
+  text-align: right;
+  font-family:'Roboto', sans-serif;
+  font-style: italic;
+  color: #ffffff;
+  font-size: 15px;
+  opacity:1;
+
 }
 /*////////MEDIA QUERIES////////*/
 @media (min-width: 261px) and (max-width: 480px){
@@ -367,7 +369,22 @@ div.contenedorhome span:hover{
     font-size: 0.7em;
     font-weight: bolder;
   }
+  /*---------MARCO TEORICO-------*/
 
+  .epigrafe{
+
+    width:70%;
+    left: 14%;
+    top: 12%;
+    padding-bottom: 20%;
+    text-align: right;
+    font-family:'Roboto', sans-serif;
+    font-style: italic;
+    color: #ffffff;
+    font-size: 0.6em;
+    opacity:1;
+
+  }
 
 }
 @media (min-width: 481px) and (max-width: 581px) {
@@ -476,6 +493,17 @@ div.contenedorhome span:hover{
     font-weight: bolder;
   }
 
+  /*---------MARCO TEORICO-------*/
+
+  .epigrafe{
+
+    width:70%;
+    left: 10%;
+    top: 12%;
+    padding-bottom: 17%;
+    font-size: 0.6em;
+
+  }
 
 }
 
@@ -574,6 +602,16 @@ div.contenedorhome span:hover{
     color:white;
     font-size: 0.7em;
     font-weight: bolder;
+  }
+  /*---------MARCO TEORICO-------*/
+
+  .epigrafe{
+
+      width:70%;
+      left: 13%;
+      top: 30%;
+      padding-bottom: 16%;
+      font-size: 0.6em;
   }
 
 
@@ -675,7 +713,18 @@ div.contenedorhome span:hover{
     font-size: 0.7em;
     font-weight: bolder;
   }
+  /*---------MARCO TEORICO-------*/
 
+  .epigrafe{
+
+    width:70%;
+    left: 14%;
+    top: 27%;
+    padding-bottom: 17%;
+    font-size: 0.6em;
+    opacity:1;
+
+  }
 
 }
 @media only screen and (min-width :768px) and (max-width : 1024px) {
@@ -775,5 +824,16 @@ div.contenedorhome span:hover{
     font-weight: bolder;
   }
 
+  /*---------MARCO TEORICO-------*/
+
+  .epigrafe{
+
+    width:70%;
+    left: 14%;
+    top: 21%;
+    padding-bottom: 17%;
+    font-size: 0.6em;
+
+  }
 
 }
